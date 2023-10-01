@@ -28,35 +28,35 @@ namespace EF6Console
                             case 1:
                                 try
                                 {
-                                    //Console.WriteLine("opciones de listado:\n1 - Listar por titulo\n2 - Listar por dia\n3 - Listar por titulo y dia\n4 - volver al menu\n");
+                                    Console.WriteLine("opciones de listado:\n1 - Listar por titulo\n2 - Listar por dia\n3 - Listar por titulo y dia\n4 - volver al menu\n");
                                     //IRepository repo = new Repositorio(ctx);
                                     //IListar lista;
                                     //Console.Write("Ingrese una opcion: ");
-                                    //int opcion2 = int.Parse(Console.ReadLine());
+                                    int opcion2 = int.Parse(Console.ReadLine());
                                     switch (opcion2)
                                     {
                                         case 1:
                                             //lista = new ListarTitulo(repo);
-                                            lista.listar();
+                                            //lista.listar();
                                             break;
                                         case 2:
                                             //lista = new ListarDia(repo);
-                                            lista.listar();
+                                            //lista.listar();
                                             break;
                                         case 3:
                                             //lista = new ListarDiaTitu(repo);
-                                            lista.listar();
+                                            //lista.listar();
                                             break;
                                         case 4:
                                             break;              //no hace nada y vuelve al menu
                                     }
                                 }
-                                catch (OverflowException ex)
+                                catch (OverflowException)
                                 {
                                     Console.Clear();
                                     Console.WriteLine("Se han ingresado demasiados datos, error.\n");
                                 }
-                                catch (FormatException ex)
+                                catch (FormatException)
                                 {
                                     Console.Clear();
                                     Console.WriteLine("por favor ingrese un numero.\n");
@@ -76,17 +76,17 @@ namespace EF6Console
                         }
                     }
                 }
-                catch (OverflowException ex)
+                catch (OverflowException)
                 {
                     Console.Clear();
                     Console.WriteLine("Se han ingresado demasiados datos, error.\n");
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     Console.Clear();
                     Console.WriteLine("por favor ingrese un numero.\n");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.Clear();
                     Console.WriteLine("ha ocurrido un error inesperado.\n");

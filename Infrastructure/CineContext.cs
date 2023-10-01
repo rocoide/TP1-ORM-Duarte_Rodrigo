@@ -66,8 +66,7 @@ namespace Infraestructure
             modelBuilder.Entity<Funcion>().Property(s => s.Fecha).IsRequired();
             modelBuilder.Entity<Funcion>().Property(s => s.Horario).IsRequired();
 
-            modelBuilder.Entity<Ticket>().HasKey(s => s.TicketId);
-            modelBuilder.Entity<Ticket>().HasKey(s => s.FuncionId);
+            modelBuilder.Entity<Ticket>().HasKey(s => new {s.TicketId, s.FuncionId});
             modelBuilder.Entity<Ticket>().Property(s => s.Usuario).HasMaxLength(50).IsRequired();
 
             modelBuilder.Entity<Sala>().HasKey(s => s.SalaId);
