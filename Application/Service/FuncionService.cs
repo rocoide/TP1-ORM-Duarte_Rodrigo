@@ -1,5 +1,6 @@
 ﻿using Application.Interface;
 using Application.Interface.Function;
+using Application.Model.DTO;
 using Application.Model.Response;
 using Domain.Entity;
 using System;
@@ -81,5 +82,16 @@ namespace Application.Service
             return ListaResponse;
         }
 
+        public void AddFuncion(FuncionDto FuncionDto) 
+        {
+            Funcion Funcion = new Funcion
+            {
+                PeliculaId = FuncionDto.PeliculaId,
+                SalaId = FuncionDto.SalaId,
+                Fecha = FuncionDto.Fecha,
+                Horario = FuncionDto.Horario
+            };
+            FuncionCommand.AddFuncion(Funcion);
+        }
     }
 }

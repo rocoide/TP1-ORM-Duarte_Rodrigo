@@ -15,13 +15,14 @@ namespace TP1_ORM_Duarte_Rodrigo
             {
                 foreach (PeliculaResponse Pel in ListaPeliculasResponse)
                 {
+                    Console.WriteLine("   Pelicula: " + Pel.PeliculaId);
                     Console.WriteLine("   Titulo: " + Pel.Titulo);
                     Console.WriteLine("   Sinopsis: " + Pel.Sinopsis);
                     Console.WriteLine("   Trailer: " + Pel.Trailer);
                     Console.WriteLine("   Poster: " + Pel.Poster);
                     Console.WriteLine("   Genero: " + Pel.Genero);
+                    Console.WriteLine("");
                 }
-                Console.WriteLine("\n\n");
             }
             else
             {

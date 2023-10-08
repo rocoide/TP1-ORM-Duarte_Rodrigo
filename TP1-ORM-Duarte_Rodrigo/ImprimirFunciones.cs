@@ -11,13 +11,15 @@ namespace TP1_ORM_Duarte_Rodrigo
     {
         public void Imprimir(List<FuncionResponse> ListaFuncionesResponse) 
         {
-            Console.WriteLine("   La lista tiene " + ListaFuncionesResponse.Count + " funciones\n");
             if (ListaFuncionesResponse.Count != 0)
             {
                 foreach (FuncionResponse Fun in ListaFuncionesResponse)
                 {
-                    Console.WriteLine("   Titulo: " + Fun.PeliculaNombre + "\nSinopsis: " + "\nGenero: " + Fun.Genero + "\n");
-                    Console.WriteLine("   Sala: " + Fun.SalaNombre + " - Fecha: " + Fun.Fecha.ToString("dddd") + " " + Fun.Fecha.ToString("dd/MM/yyyy") + " - Horario: " + Fun.Horario.ToString("HH:mm"));
+                    Console.WriteLine("   Titulo: " + Fun.PeliculaNombre);
+                    Console.WriteLine("   Genero: " + Fun.Genero);
+                    Console.WriteLine("   Sala: " + Fun.SalaNombre);
+                    Console.WriteLine("   Fecha: " + Fun.Fecha.ToString("dddd") + " " + Fun.Fecha.ToString("dd/MM/yyyy") + " " + Fun.Horario.ToString(@"hh\:mm"));
+                    Console.WriteLine("");
                 }
                 Console.WriteLine("\n\n");
             }

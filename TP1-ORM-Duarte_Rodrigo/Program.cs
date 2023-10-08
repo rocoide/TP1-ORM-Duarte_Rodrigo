@@ -2,6 +2,7 @@
 using Application.Interface;
 using Application.Interface.Function;
 using Application.Interface.Peliculas;
+using Application.Interface.Salas;
 using Application.Model.Response;
 using Application.Service;
 using Application.Validacion;
@@ -37,8 +38,13 @@ namespace EF6Console
                         IFuncionQuery FuncionQuery = new FuncionQuery(Ctx);
                         IFuncionCommand FuncionCommand = new FuncionCommand(Ctx);
                         IFuncionService FuncionService = new FuncionService(FuncionCommand, FuncionQuery);
+
                         IPeliculaQuery PeliculaQuery = new PeliculaQuery(Ctx);
                         IPeliculaService PeliculaService = new PeliculaService(PeliculaQuery);
+
+                        ISalaQuery SalaQuery = new SalaQuery(Ctx);
+                        ISalaService SalaService = new SalaService(SalaQuery);
+
                         switch (opcion)
                         {
                             case 1:
@@ -46,7 +52,8 @@ namespace EF6Console
                                 break;
                             case 2:
                                 ListarPeliculas(PeliculaService);
-                                AddFuncion(FuncionService);
+                                AddFuncion AniadirFuncion = new AddFuncion(FuncionService, PeliculaService, SalaService);
+                                AniadirFuncion.Add();
                                 break;
                             case 3:
                                 menu = false;
@@ -155,8 +162,8 @@ namespace EF6Console
                 }
                 catch (FormatException)
                 {
-                    Console.Clear();
-                    Console.WriteLine("   Por favor ingrese una opcion valida.\n   ");
+                    //Console.Clear();
+                    Console.WriteLine("   rokopop.\n   ");
                 }
                 catch (Exception Ex)
                 {
@@ -173,8 +180,5 @@ namespace EF6Console
             ImprimirPeliculas.Imprimir(lista);
         }
 
-        static async void AddFuncion(IFuncionService FuncionService) 
-        {
-        }
     }
 }

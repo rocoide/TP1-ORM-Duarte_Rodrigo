@@ -17,12 +17,22 @@ namespace Infrastructure.Query
             this.Context = Context;
         }
 
-        public async Task<List<Pelicula>> GetAllPeliculas()
+        public List<Pelicula> GetAllPeliculas()
         {
-            List<Pelicula> peliculas = await Context.Peliculas
-                                                    .Include(f => f.Generos)
-                                                    .ToListAsync();
+            List<Pelicula> peliculas = Context.Peliculas
+                                              .Include(f => f.Generos)
+                                              .ToList();
             return peliculas;
         }
+
+        public async Task<Pelicula?> GetPeliculaById(int PeliculaId) 
+        {
+            Pelicula? Pel = Context.Peliculas
+                                   .Include(f => f.Generos)
+                                   .FirstOrDefault(t => t.PeliculaId == PeliculaId);
+            return Pel;
+        }
+
+
     }
 }

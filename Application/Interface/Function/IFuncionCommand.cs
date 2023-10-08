@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Application.Model.DTO;
+using Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace Application.Interface.Function
 {
     public interface IFuncionCommand
     {
+        void AddFuncion(Funcion Funcion);
     }
 }

@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interface.Peliculas
+namespace Application.Interface.Salas
 {
-    public interface IPeliculaQuery
+    public interface ISalaService
     {
-        List<Pelicula> GetAllPeliculas();
-        Task<Pelicula?> GetPeliculaById(int PeliculaId);
+        Task<List<SalaResponse>> GetAllSalas();
+        Task<SalaResponse> GetSalaById(int SalaId);
     }
 }

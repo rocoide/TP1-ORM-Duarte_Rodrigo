@@ -13,13 +13,13 @@ namespace Application.Validacion
         {
             if (Fecha.Contains("/"))
             {
-                throw new ExceptionFecha("   La fecha se debe ingresar con \"-\" no con \"/\"");
+                throw new ExceptionFecha("   La fecha se debe ingresar con \"-\" no con \"/\".\n");
             }
             DateTime FechaParse;
             bool Resultado = DateTime.TryParse(Fecha, out FechaParse);
             if (!Resultado) 
             {
-                throw new ExceptionFecha("   La fecha no se ingreso en un formato valido.");
+                throw new ExceptionFecha("   La fecha no se ingreso en un formato valido.\n");
             }
             else
             {

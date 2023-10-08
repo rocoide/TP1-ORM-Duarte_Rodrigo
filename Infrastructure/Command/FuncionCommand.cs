@@ -1,4 +1,6 @@
 ﻿using Application.Interface.Function;
+using Application.Model.DTO;
+using Domain.Entity;
 using Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,12 @@ namespace Infrastructure.Command
         public FuncionCommand(CineContext Context) 
         {
             this.Context = Context;
+        }
+
+        public void AddFuncion(Funcion Funcion) 
+        {
+            Context.Funciones.Add(Funcion);
+            Context.SaveChanges();
         }
     }
 }
