@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
-using Domain.Entities;
+using Domain.Entity;
 
-namespace Infraestructure
+namespace Infrastructure
 {
     public class CineContext : DbContext
     {

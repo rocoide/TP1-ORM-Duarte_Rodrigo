@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Model\DTO\" />
-    <Folder Include="Model\Response\" />
+    <Folder Include="UseCase\" />
   </ItemGroup>
 
 </Project>

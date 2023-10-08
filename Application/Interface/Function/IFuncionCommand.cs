@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interface
+namespace Application.Interface.Function
 {
-    public class IFuncionCommand
+    public interface IFuncionCommand
     {
     }
 }
