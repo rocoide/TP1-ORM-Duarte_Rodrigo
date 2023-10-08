@@ -173,6 +173,10 @@ namespace EF6Console
             }
         }
     
+
+
+
+
         static async void ListarPeliculas(IPeliculaService PeliculaService) 
         {
             ImprimirPeliculas ImprimirPeliculas = new ImprimirPeliculas();
