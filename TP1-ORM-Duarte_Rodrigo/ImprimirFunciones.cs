@@ -1,15 +1,10 @@
 ﻿using Application.Model.Response;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP1_ORM_Duarte_Rodrigo
 {
     public class ImprimirFunciones
     {
-        public void Imprimir(List<FuncionResponse> ListaFuncionesResponse) 
+        public void Imprimir(List<FuncionResponse> ListaFuncionesResponse)
         {
             if (ListaFuncionesResponse.Count != 0)
             {
@@ -25,7 +20,7 @@ namespace TP1_ORM_Duarte_Rodrigo
             }
             else
             {
-                Console.WriteLine("   No hay funciones para esa pelicula\n");
+                Console.WriteLine("   No se han encontrado funciones para los parametros ingresados\n");
             }
         }
     }

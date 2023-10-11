@@ -5,11 +5,6 @@ using Application.Interface.Salas;
 using Application.Model.DTO;
 using Application.Model.Response;
 using Application.Validacion;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TP1_ORM_Duarte_Rodrigo
 {
@@ -19,54 +14,55 @@ namespace TP1_ORM_Duarte_Rodrigo
         private readonly IPeliculaService PeliculaService;
         private readonly ISalaService SalaService;
 
-        public AddFuncion (IFuncionService funcionService, IPeliculaService peliculaService, ISalaService salaService)
+        public AddFuncion(IFuncionService funcionService, IPeliculaService peliculaService, ISalaService salaService)
         {
             FuncionService = funcionService;
             PeliculaService = peliculaService;
             SalaService = salaService;
         }
 
-        public async void Add() 
+        public async void Add()
         {
-            try 
-            { 
+            try
+            {
                 Console.Write("   Seleccione ID de una pelicula para la funcion: ");
                 int PeliculaId;
-                bool Aux = int.TryParse(Console.ReadLine(), out PeliculaId);    //Valido que sea un numero
-                if (!Aux)
+                if (!int.TryParse(Console.ReadLine(), out PeliculaId))
                 {
-                    throw new FormatException("   Por favor ingrese un numero para la pelicula.");
+                    throw new FormatException("   Por favor ingrese un numero para la pelicula.\n");
                 }
                 PeliculaResponse? PeliculaResponse = await PeliculaService.GetPeliculaById(PeliculaId);
                 if (PeliculaResponse == null)
                 {
-                    throw new FormatException("   La pelicula ingresada no existe.\n");
+                    throw new FormatException("   La pelicula seleccionada no existe.\n");
                 }
-
-
 
 
                 ImprimirSalas ImprimirSalas = new ImprimirSalas();
                 ImprimirSalas.Imprimir(await SalaService.GetAllSalas());
+
+
                 Console.Write("   Seleccione una sala para la funcion: ");
                 int SalaId;
-                Aux = int.TryParse(Console.ReadLine(), out SalaId);
-                if (!Aux) 
+                if (!int.TryParse(Console.ReadLine(), out SalaId))
                 {
-                    throw new FormatException("   Por favor ingrese un numero para la sala");
+                    throw new FormatException("   Por favor ingrese un numero para la sala.\n");
                 }
+
+
                 SalaResponse? SalaResponse = await SalaService.GetSalaById(SalaId);
                 if (SalaResponse == null)
                 {
                     throw new FormatException("   La sala seleccionada no existe.\n");
                 }
 
-                Console.Write("   Ingrese una fecha en el formate dd-mm: ");
+                Console.Write("   Ingrese una fecha (dd-mm): ");
                 string Fech = Console.ReadLine();
                 DateTime Fecha = ValidarFecha.Validar(Fech);
-                Console.Write("   Ingrese un horario en el formato: ");
+                Console.Write("   Ingrese un horario (hh:mm): ");
                 string Hora = Console.ReadLine();
                 TimeSpan Horario = ValidarHorario.Validar(Hora);
+                ValidarFechaFuncion.Validar(Fecha, Horario);
 
                 FuncionDto FuncionDto = new FuncionDto
                 {
@@ -78,34 +74,34 @@ namespace TP1_ORM_Duarte_Rodrigo
 
                 FuncionService.AddFuncion(FuncionDto);
 
-
+                Console.WriteLine("   Funcion programada exitosamente\n");
             }
-            catch (ExcepcionHorario Ex) 
+            catch (ExcepcionHorario Ex)
             {
                 Console.Clear();
                 Console.WriteLine(Ex.Message);
             }
-            catch (ExceptionFecha Ex) 
+            catch (ExceptionFecha Ex)
             {
                 Console.Clear();
                 Console.WriteLine(Ex.Message);
             }
-            catch (OverflowException) 
+            catch (OverflowException)
             {
                 Console.Clear();
                 Console.WriteLine("   Error, se han ingresado demasiados datos.\n");
             }
-            catch (FormatException Ex) 
+            catch (FormatException Ex)
             {
                 Console.Clear();
                 Console.WriteLine(Ex.Message);
             }
-            catch (NullReferenceException Ex) 
+            catch (NullReferenceException Ex)
             {
                 Console.Clear();
                 Console.WriteLine(Ex.Message);
             }
-            catch (Exception Ex) 
+            catch (Exception Ex)
             {
                 Console.Clear();
                 Console.WriteLine(Ex.Message);

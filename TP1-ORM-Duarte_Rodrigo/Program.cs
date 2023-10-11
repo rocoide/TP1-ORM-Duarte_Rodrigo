@@ -1,16 +1,13 @@
 ﻿using Application.Exceptions;
-using Application.Interface;
 using Application.Interface.Function;
 using Application.Interface.Peliculas;
 using Application.Interface.Salas;
 using Application.Model.Response;
 using Application.Service;
 using Application.Validacion;
-using Domain.Entity;
 using Infrastructure;
 using Infrastructure.Command;
 using Infrastructure.Query;
-using System.Collections.Generic;
 using TP1_ORM_Duarte_Rodrigo;
 
 namespace EF6Console
@@ -25,7 +22,7 @@ namespace EF6Console
                 try
                 {
                     using (var Ctx = new CineContext())
-                    {   
+                    {
                         Console.WriteLine("   Bienvenidos al cine\n");
                         Console.WriteLine("   Por favor elija una opcion");
                         Console.WriteLine("   1 - Listar funciones");
@@ -95,7 +92,7 @@ namespace EF6Console
                 {
                     Console.WriteLine("   opciones de listado:\n");
                     Console.WriteLine("   1 - Listar por titulo");
-                    Console.WriteLine("   2 - Listar por dia");
+                    Console.WriteLine("   2 - Listar por fecha");
                     Console.WriteLine("   3 - Listar por titulo y dia");
                     Console.WriteLine("   4 - volver al menu\n");
                     Console.Write("   Ingrese una opcion: ");
@@ -119,7 +116,7 @@ namespace EF6Console
                         case 2:
                             Console.Write("   Ingrese el la fecha que desea listar (dd-mm): ");
                             string Fecha = Console.ReadLine();
-                            DateTime FechaValidada = ValidarFecha.Validar(Fecha); //Valida la fecha y devuelve un DateTime, de no ser valida lanza excepcion con msg
+                            DateTime FechaValidada = ValidarFecha.Validar(Fecha); //Valida la fecha y devuelve un DateTime, de no ser validada lanza excepcion con msg
                             Console.WriteLine("");
                             List<FuncionResponse> ListaFuncionResponse2 = await FuncionService.ListarFecha(FechaValidada);
                             ImprimirFunciones.Imprimir(ListaFuncionResponse2);
@@ -150,7 +147,7 @@ namespace EF6Console
                             break;
                     }
                 }
-                catch (ExceptionFecha Ex) 
+                catch (ExceptionFecha Ex)
                 {
                     Console.Clear();
                     Console.WriteLine(Ex.Message);
@@ -162,8 +159,8 @@ namespace EF6Console
                 }
                 catch (FormatException)
                 {
-                    //Console.Clear();
-                    Console.WriteLine("   rokopop.\n   ");
+                    Console.Clear();
+                    Console.WriteLine("   Por favor ingrese un numero.\n   ");
                 }
                 catch (Exception Ex)
                 {
@@ -172,12 +169,12 @@ namespace EF6Console
                 }
             }
         }
-    
 
 
 
 
-        static async void ListarPeliculas(IPeliculaService PeliculaService) 
+
+        static async void ListarPeliculas(IPeliculaService PeliculaService)
         {
             ImprimirPeliculas ImprimirPeliculas = new ImprimirPeliculas();
             List<PeliculaResponse> lista = await PeliculaService.GetAllPeliculas();

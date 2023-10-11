@@ -1,18 +1,13 @@
 ﻿using Application.Interface.Peliculas;
 using Application.Model.Response;
 using Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Service
 {
     public class PeliculaService : IPeliculaService
     {
         private readonly IPeliculaQuery PeliculaQuery;
-        public PeliculaService(IPeliculaQuery PeliculaQuery) 
+        public PeliculaService(IPeliculaQuery PeliculaQuery)
         {
             this.PeliculaQuery = PeliculaQuery;
         }
@@ -22,7 +17,7 @@ namespace Application.Service
             List<Pelicula> ListaPeliculas = PeliculaQuery.GetAllPeliculas();
             List<PeliculaResponse> ListaResponse = new List<PeliculaResponse>();
             PeliculaResponse PelResponse;
-            foreach(Pelicula Pel in ListaPeliculas)
+            foreach (Pelicula Pel in ListaPeliculas)
             {
                 PelResponse = new PeliculaResponse
                 {
@@ -39,10 +34,10 @@ namespace Application.Service
         }
 
 
-        public async Task<PeliculaResponse?> GetPeliculaById(int PeliculaId) 
+        public async Task<PeliculaResponse?> GetPeliculaById(int PeliculaId)
         {
             Pelicula? Pel = await PeliculaQuery.GetPeliculaById(PeliculaId);
-            if (Pel != null) 
+            if (Pel != null)
             {
                 PeliculaResponse PelResponse = new PeliculaResponse
                 {

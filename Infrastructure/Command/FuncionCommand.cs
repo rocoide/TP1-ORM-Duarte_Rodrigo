@@ -1,12 +1,5 @@
 ﻿using Application.Interface.Function;
-using Application.Model.DTO;
 using Domain.Entity;
-using Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Command
 {
@@ -14,12 +7,12 @@ namespace Infrastructure.Command
     {
         private readonly CineContext Context;
 
-        public FuncionCommand(CineContext Context) 
+        public FuncionCommand(CineContext Context)
         {
             this.Context = Context;
         }
 
-        public void AddFuncion(Funcion Funcion) 
+        public void AddFuncion(Funcion Funcion)
         {
             Context.Funciones.Add(Funcion);
             Context.SaveChanges();

@@ -1,13 +1,7 @@
-﻿using Application.Interface;
-using Application.Interface.Function;
+﻿using Application.Interface.Function;
 using Application.Model.DTO;
 using Application.Model.Response;
 using Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Service
 {
@@ -16,18 +10,18 @@ namespace Application.Service
         private readonly IFuncionCommand FuncionCommand;
         private readonly IFuncionQuery FuncionQuery;
 
-        public FuncionService (IFuncionCommand FuncionCommand, IFuncionQuery FuncionQuery)
+        public FuncionService(IFuncionCommand FuncionCommand, IFuncionQuery FuncionQuery)
         {
             this.FuncionCommand = FuncionCommand;
             this.FuncionQuery = FuncionQuery;
         }
 
-        public async Task<List<FuncionResponse>> ListarTitu(string Titu) 
+        public async Task<List<FuncionResponse>> ListarTitu(string Titu)
         {
             List<Funcion> ListaFuncion = await FuncionQuery.ListarTitu(Titu);
-            List<FuncionResponse> ListaResponse = new List<FuncionResponse> ();
+            List<FuncionResponse> ListaResponse = new List<FuncionResponse>();
             FuncionResponse FunResponse;
-            foreach (Funcion Fun in ListaFuncion) 
+            foreach (Funcion Fun in ListaFuncion)
             {
                 FunResponse = new FuncionResponse
                 {
@@ -82,7 +76,7 @@ namespace Application.Service
             return ListaResponse;
         }
 
-        public void AddFuncion(FuncionDto FuncionDto) 
+        public void AddFuncion(FuncionDto FuncionDto)
         {
             Funcion Funcion = new Funcion
             {

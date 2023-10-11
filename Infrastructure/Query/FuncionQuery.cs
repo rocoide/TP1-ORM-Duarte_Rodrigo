@@ -1,13 +1,6 @@
 ﻿using Application.Interface.Function;
 using Domain.Entity;
-using Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Query
 {
@@ -42,7 +35,7 @@ namespace Infrastructure.Query
             return lista;
         }
 
-        public async Task<List<Funcion>> ListarTituFecha(string Titu, DateTime Fecha) 
+        public async Task<List<Funcion>> ListarTituFecha(string Titu, DateTime Fecha)
         {
             List<Funcion> lista = Context.Funciones
                                             .Include(f => f.Peliculas)

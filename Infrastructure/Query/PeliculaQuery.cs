@@ -1,18 +1,13 @@
 ﻿using Application.Interface.Peliculas;
 using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Query
 {
     public class PeliculaQuery : IPeliculaQuery
     {
         private readonly CineContext Context;
-        public PeliculaQuery (CineContext Context)
+        public PeliculaQuery(CineContext Context)
         {
             this.Context = Context;
         }
@@ -25,7 +20,7 @@ namespace Infrastructure.Query
             return peliculas;
         }
 
-        public async Task<Pelicula?> GetPeliculaById(int PeliculaId) 
+        public async Task<Pelicula?> GetPeliculaById(int PeliculaId)
         {
             Pelicula? Pel = Context.Peliculas
                                    .Include(f => f.Generos)

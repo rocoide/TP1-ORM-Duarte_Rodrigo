@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
-using Domain.Entity;
 
 namespace Infrastructure
 {
@@ -66,7 +59,7 @@ namespace Infrastructure
             modelBuilder.Entity<Funcion>().Property(s => s.Fecha).IsRequired();
             modelBuilder.Entity<Funcion>().Property(s => s.Horario).IsRequired();
 
-            modelBuilder.Entity<Ticket>().HasKey(s => new {s.TicketId, s.FuncionId});
+            modelBuilder.Entity<Ticket>().HasKey(s => new { s.TicketId, s.FuncionId });
             modelBuilder.Entity<Ticket>().Property(s => s.Usuario).HasMaxLength(50).IsRequired();
 
             modelBuilder.Entity<Sala>().HasKey(s => s.SalaId);
