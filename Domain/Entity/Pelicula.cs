@@ -2,7 +2,6 @@
 
 namespace Domain.Entity
 {
-    [Table("Peliculas")]
     public class Pelicula
     {
 

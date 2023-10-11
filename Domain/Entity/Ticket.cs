@@ -2,7 +2,6 @@
 
 namespace Domain.Entity
 {
-    [Table("Tickets")]
     public class Ticket
     {
         public Guid TicketId { get; set; }

@@ -44,24 +44,29 @@ namespace Infrastructure
 
 
             //Especificando caracterisitcas de los campos
+            modelBuilder.Entity<Genero>().ToTable("Generos");
             modelBuilder.Entity<Genero>().HasKey(s => s.GeneroId);
             modelBuilder.Entity<Genero>().Property(s => s.Nombre).HasMaxLength(50).IsRequired();
 
+            modelBuilder.Entity<Pelicula>().ToTable("Peliculas");
             modelBuilder.Entity<Pelicula>().HasKey(s => s.PeliculaId);
             modelBuilder.Entity<Pelicula>().Property(s => s.Titulo).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(s => s.Sinopsis).HasMaxLength(255).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(s => s.Poster).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(s => s.Trailer).HasMaxLength(100).IsRequired();
 
+            modelBuilder.Entity<Funcion>().ToTable("Funciones");
             modelBuilder.Entity<Funcion>().HasKey(s => s.FuncionId);
             modelBuilder.Entity<Funcion>().Property(s => s.PeliculaId).IsRequired();
             modelBuilder.Entity<Funcion>().Property(s => s.SalaId).IsRequired();
             modelBuilder.Entity<Funcion>().Property(s => s.Fecha).IsRequired();
             modelBuilder.Entity<Funcion>().Property(s => s.Horario).IsRequired();
 
+            modelBuilder.Entity<Ticket>().ToTable("Tickets");
             modelBuilder.Entity<Ticket>().HasKey(s => new { s.TicketId, s.FuncionId });
             modelBuilder.Entity<Ticket>().Property(s => s.Usuario).HasMaxLength(50).IsRequired();
 
+            modelBuilder.Entity<Sala>().ToTable("Salas");
             modelBuilder.Entity<Sala>().HasKey(s => s.SalaId);
             modelBuilder.Entity<Sala>().Property(s => s.Nombre).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Sala>().Property(s => s.Capacidad).IsRequired();
@@ -332,7 +337,7 @@ namespace Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-SC0U42I\SQLEXPRESS;Database=rokoDB;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-SC0U42I\SQLEXPRESS;Database=CineDuarteDB;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
     }

@@ -2,7 +2,6 @@
 
 namespace Domain.Entity
 {
-    [Table("Funciones")]
     public class Funcion
     {
         public int FuncionId { get; set; }

@@ -16,8 +16,8 @@ namespace EF6Console
     {
         static void Main(string[] args)
         {
-            bool menu = true;
-            while (menu)
+            bool Menu = true;
+            while (Menu)
             {
                 try
                 {
@@ -29,7 +29,7 @@ namespace EF6Console
                         Console.WriteLine("   2 - Registrar funcion");
                         Console.WriteLine("   3 - Salir\n");
                         Console.Write("   Ingrese una opcion: ");
-                        int opcion = int.Parse(Console.ReadLine());
+                        int Opcion = int.Parse(Console.ReadLine());
                         Console.WriteLine("");
 
                         IFuncionQuery FuncionQuery = new FuncionQuery(Ctx);
@@ -42,7 +42,7 @@ namespace EF6Console
                         ISalaQuery SalaQuery = new SalaQuery(Ctx);
                         ISalaService SalaService = new SalaService(SalaQuery);
 
-                        switch (opcion)
+                        switch (Opcion)
                         {
                             case 1:
                                 ListarFunciones(FuncionService);
@@ -53,7 +53,7 @@ namespace EF6Console
                                 AniadirFuncion.Add();
                                 break;
                             case 3:
-                                menu = false;
+                                Menu = false;
                                 break;
                             default:
                                 Console.WriteLine("   No se ha ingresado una opcion valida.\n");
@@ -84,9 +84,9 @@ namespace EF6Console
 
         static async void ListarFunciones(IFuncionService FuncionService)
         {
-            bool menu = true;
+            bool Menu = true;
             ImprimirFunciones ImprimirFunciones = new ImprimirFunciones();
-            while (menu)
+            while (Menu)
             {
                 try
                 {
@@ -96,8 +96,8 @@ namespace EF6Console
                     Console.WriteLine("   3 - Listar por titulo y dia");
                     Console.WriteLine("   4 - volver al menu\n");
                     Console.Write("   Ingrese una opcion: ");
-                    int opcion2 = int.Parse(Console.ReadLine());
-                    switch (opcion2)
+                    int Opcion2 = int.Parse(Console.ReadLine());
+                    switch (Opcion2)
                     {
                         case 1:
                             Console.Write("   Ingrese el titulo que desea listar: ");
@@ -139,7 +139,7 @@ namespace EF6Console
                             }
                             break;
                         case 4:
-                            menu = false;
+                            Menu = false;
                             Console.Clear();
                             break;              //no hace nada y vuelve al menu
                         default:

@@ -2,7 +2,6 @@
 
 namespace Domain.Entity
 {
-    [Table("Generos")]
     public class Genero
     {
         public int GeneroId { get; set; }

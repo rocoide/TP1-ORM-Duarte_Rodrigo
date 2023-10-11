@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CineContext))]
-    [Migration("20231001141434_roko")]
-    partial class roko
+    [Migration("20231011035811_DuarteDB")]
+    partial class DuarteDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.Funcion", b =>
+            modelBuilder.Entity("Domain.Entity.Funcion", b =>
                 {
                     b.Property<int>("FuncionId")
                         .ValueGeneratedOnAdd()
@@ -51,10 +51,10 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SalaId");
 
-                    b.ToTable("Funciones");
+                    b.ToTable("Funciones", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Genero", b =>
+            modelBuilder.Entity("Domain.Entity.Genero", b =>
                 {
                     b.Property<int>("GeneroId")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("GeneroId");
 
-                    b.ToTable("Generos");
+                    b.ToTable("Generos", (string)null);
 
                     b.HasData(
                         new
@@ -124,7 +124,7 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Pelicula", b =>
+            modelBuilder.Entity("Domain.Entity.Pelicula", b =>
                 {
                     b.Property<int>("PeliculaId")
                         .ValueGeneratedOnAdd()
@@ -159,7 +159,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("Genero");
 
-                    b.ToTable("Peliculas");
+                    b.ToTable("Peliculas", (string)null);
 
                     b.HasData(
                         new
@@ -344,7 +344,7 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Sala", b =>
+            modelBuilder.Entity("Domain.Entity.Sala", b =>
                 {
                     b.Property<int>("SalaId")
                         .ValueGeneratedOnAdd()
@@ -362,7 +362,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("SalaId");
 
-                    b.ToTable("Salas");
+                    b.ToTable("Salas", (string)null);
 
                     b.HasData(
                         new
@@ -385,7 +385,7 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Domain.Entities.Ticket", b =>
+            modelBuilder.Entity("Domain.Entity.Ticket", b =>
                 {
                     b.Property<Guid>("TicketId")
                         .HasColumnType("uniqueidentifier");
@@ -402,18 +402,18 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("FuncionId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Funcion", b =>
+            modelBuilder.Entity("Domain.Entity.Funcion", b =>
                 {
-                    b.HasOne("Domain.Entities.Pelicula", "Peliculas")
+                    b.HasOne("Domain.Entity.Pelicula", "Peliculas")
                         .WithMany("Funciones")
                         .HasForeignKey("PeliculaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Sala", "Salas")
+                    b.HasOne("Domain.Entity.Sala", "Salas")
                         .WithMany("Funciones")
                         .HasForeignKey("SalaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -424,9 +424,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Salas");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Pelicula", b =>
+            modelBuilder.Entity("Domain.Entity.Pelicula", b =>
                 {
-                    b.HasOne("Domain.Entities.Genero", "Generos")
+                    b.HasOne("Domain.Entity.Genero", "Generos")
                         .WithMany("Peliculas")
                         .HasForeignKey("Genero")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -435,9 +435,9 @@ namespace Infrastructure.Migrations
                     b.Navigation("Generos");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Ticket", b =>
+            modelBuilder.Entity("Domain.Entity.Ticket", b =>
                 {
-                    b.HasOne("Domain.Entities.Funcion", "Funciones")
+                    b.HasOne("Domain.Entity.Funcion", "Funciones")
                         .WithMany("Tickets")
                         .HasForeignKey("FuncionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -446,22 +446,22 @@ namespace Infrastructure.Migrations
                     b.Navigation("Funciones");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Funcion", b =>
+            modelBuilder.Entity("Domain.Entity.Funcion", b =>
                 {
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Genero", b =>
+            modelBuilder.Entity("Domain.Entity.Genero", b =>
                 {
                     b.Navigation("Peliculas");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Pelicula", b =>
+            modelBuilder.Entity("Domain.Entity.Pelicula", b =>
                 {
                     b.Navigation("Funciones");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Sala", b =>
+            modelBuilder.Entity("Domain.Entity.Sala", b =>
                 {
                     b.Navigation("Funciones");
                 });
