@@ -10,11 +10,11 @@ namespace TP1_ORM_Duarte_Rodrigo
             Console.WriteLine("   Salas disponibles para la funcion\n");
             foreach (SalaResponse SalaResponse in ListaSala)
             {
-                Console.WriteLine("   Id: " + SalaResponse.SalaId);
-                Console.WriteLine("   Nombre: " + SalaResponse.Nombre);
+                Console.Write("   Id: " + SalaResponse.SalaId);
+                Console.Write("   Nombre: " + SalaResponse.Nombre);
                 Console.WriteLine("   Capacidad: " + SalaResponse.Capacidad);
-                Console.WriteLine("");
             }
+            Console.WriteLine("");
         }
     }
 }

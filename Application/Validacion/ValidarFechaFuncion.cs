@@ -15,9 +15,12 @@ namespace Application.Validacion
             }
             else
             {
-                if (HoraActual > Hora)
+                if (FechaActual == FechaIngresada) 
                 {
-                    throw new ExcepcionFechaFuncion("   No se pueden ingresar funciones para horas previas a la hora actual en el dia de la fecha.\n");
+                    if (HoraActual > Hora)
+                    {
+                        throw new ExcepcionFechaFuncion("   No se pueden ingresar funciones para horas previas a la hora actual en el dia de la fecha.\n");
+                    }
                 }
             }
         }

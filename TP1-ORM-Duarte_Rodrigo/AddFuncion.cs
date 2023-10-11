@@ -25,81 +25,66 @@ namespace TP1_ORM_Duarte_Rodrigo
         {
             try
             {
-                Console.Write("   Seleccione ID de una pelicula para la funcion: ");
-                int PeliculaId;
-                if (!int.TryParse(Console.ReadLine(), out PeliculaId))
-                {
-                    throw new FormatException("   Por favor ingrese un numero para la pelicula.\n");
-                }
-                PeliculaResponse? PeliculaResponse = await PeliculaService.GetPeliculaById(PeliculaId);
-                if (PeliculaResponse == null)
-                {
-                    throw new FormatException("   La pelicula seleccionada no existe.\n");
-                }
-
-
-                ImprimirSalas ImprimirSalas = new ImprimirSalas();
-                ImprimirSalas.Imprimir(await SalaService.GetAllSalas());
-
-
-                Console.Write("   Seleccione una sala para la funcion: ");
-                int SalaId;
-                if (!int.TryParse(Console.ReadLine(), out SalaId))
-                {
-                    throw new FormatException("   Por favor ingrese un numero para la sala.\n");
-                }
-
-
-                SalaResponse? SalaResponse = await SalaService.GetSalaById(SalaId);
-                if (SalaResponse == null)
-                {
-                    throw new FormatException("   La sala seleccionada no existe.\n");
-                }
-
-                Console.Write("   Ingrese una fecha (dd-mm): ");
-                string Fech = Console.ReadLine();
-                DateTime Fecha = ValidarFecha.Validar(Fech);
-                Console.Write("   Ingrese un horario (hh:mm): ");
-                string Hora = Console.ReadLine();
-                TimeSpan Horario = ValidarHorario.Validar(Hora);
-                ValidarFechaFuncion.Validar(Fecha, Horario);
-
-                FuncionDto FuncionDto = new FuncionDto
-                {
-                    PeliculaId = PeliculaId,
-                    SalaId = SalaId,
-                    Fecha = Fecha,
-                    Horario = Horario
-                };
-
-                FuncionService.AddFuncion(FuncionDto);
-
-                Console.WriteLine("   Funcion programada exitosamente\n");
-            }
-            catch (ExcepcionHorario Ex)
+            Console.Write("   Seleccione el ID de una pelicula para la funcion: ");
+            int PeliculaId;
+            if (!int.TryParse(Console.ReadLine(), out PeliculaId))
             {
-                Console.Clear();
-                Console.WriteLine(Ex.Message);
+                throw new FormatException("   Por favor ingrese un numero para la pelicula.\n");
             }
-            catch (ExceptionFecha Ex)
+            PeliculaResponse? PeliculaResponse = await PeliculaService.GetPeliculaById(PeliculaId);
+            if (PeliculaResponse == null)
             {
-                Console.Clear();
-                Console.WriteLine(Ex.Message);
+                throw new FormatException("   La pelicula seleccionada no existe.\n");
+            }
+
+
+            ImprimirSalas ImprimirSalas = new ImprimirSalas();
+            ImprimirSalas.Imprimir(await SalaService.GetAllSalas());
+
+
+            Console.Write("   Seleccione una sala para la funcion: ");
+            int SalaId;
+            if (!int.TryParse(Console.ReadLine(), out SalaId))
+            {
+                throw new FormatException("   Por favor ingrese un numero para la sala.\n");
+            }
+
+
+            SalaResponse? SalaResponse = await SalaService.GetSalaById(SalaId);
+            if (SalaResponse == null)
+            {
+                throw new FormatException("   La sala seleccionada no existe.\n");
+            }
+
+            Console.Write("   Ingrese una fecha (dd-mm): ");
+            string Fech = Console.ReadLine();
+            DateTime Fecha = ValidarFecha.Validar(Fech);
+            Console.Write("   Ingrese un horario (hh:mm): ");
+            string Hora = Console.ReadLine();
+            TimeSpan Horario = ValidarHorario.Validar(Hora);
+            ValidarFechaFuncion.Validar(Fecha, Horario);
+
+            FuncionDto FuncionDto = new FuncionDto
+            {
+                PeliculaId = PeliculaId,
+                SalaId = SalaId,
+                Fecha = Fecha,
+                Horario = Horario
+            };
+
+            FuncionService.AddFuncion(FuncionDto);
+            Console.Clear();
+            Console.WriteLine("   Funcion programada exitosamente\n");
             }
             catch (OverflowException)
             {
                 Console.Clear();
                 Console.WriteLine("   Error, se han ingresado demasiados datos.\n");
             }
-            catch (FormatException Ex)
+            catch (NullReferenceException)
             {
                 Console.Clear();
-                Console.WriteLine(Ex.Message);
-            }
-            catch (NullReferenceException Ex)
-            {
-                Console.Clear();
-                Console.WriteLine(Ex.Message);
+                Console.WriteLine("   Ha ocurrido un error inesperado.\n");
             }
             catch (Exception Ex)
             {

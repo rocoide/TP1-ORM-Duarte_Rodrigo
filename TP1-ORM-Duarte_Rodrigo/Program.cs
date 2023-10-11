@@ -8,6 +8,7 @@ using Application.Validacion;
 using Infrastructure;
 using Infrastructure.Command;
 using Infrastructure.Query;
+using System.Reflection;
 using TP1_ORM_Duarte_Rodrigo;
 
 namespace EF6Console
@@ -17,6 +18,7 @@ namespace EF6Console
         static void Main(string[] args)
         {
             bool Menu = true;
+            bool Aux;
             while (Menu)
             {
                 try
@@ -29,7 +31,12 @@ namespace EF6Console
                         Console.WriteLine("   2 - Registrar funcion");
                         Console.WriteLine("   3 - Salir\n");
                         Console.Write("   Ingrese una opcion: ");
-                        int Opcion = int.Parse(Console.ReadLine());
+                        int Opcion;
+                        Aux = int.TryParse(Console.ReadLine(), out Opcion);
+                        if (!Aux) 
+                        {
+                            throw new FormatException("   Por favor ingrese un numero.\n");
+                        }
                         Console.WriteLine("");
 
                         IFuncionQuery FuncionQuery = new FuncionQuery(Ctx);
@@ -61,20 +68,20 @@ namespace EF6Console
                         }
                     }
                 }
+                catch (NullReferenceException) 
+                {
+                    Console.Clear();
+                    Console.WriteLine("   Se ha producido en un error inesperado.\n");
+                }
                 catch (OverflowException)
                 {
                     Console.Clear();
                     Console.WriteLine("   Se han ingresado demasiados datos, error.\n");
                 }
-                catch (FormatException)
-                {
-                    Console.Clear();
-                    Console.WriteLine("   Por favor ingrese una opcion valida.\n");
-                }
                 catch (Exception Ex)
                 {
                     Console.Clear();
-                    Console.WriteLine("   Ha ocurrido un error inesperado.\n" + Ex.Message);
+                    Console.WriteLine(   Ex.Message);
                 }
             }
             Console.WriteLine("   Gracias por utilizar nuestros servicios. Que tenga un buen dia :)");
@@ -85,6 +92,7 @@ namespace EF6Console
         static async void ListarFunciones(IFuncionService FuncionService)
         {
             bool Menu = true;
+            bool Aux;
             ImprimirFunciones ImprimirFunciones = new ImprimirFunciones();
             while (Menu)
             {
@@ -96,8 +104,13 @@ namespace EF6Console
                     Console.WriteLine("   3 - Listar por titulo y dia");
                     Console.WriteLine("   4 - volver al menu\n");
                     Console.Write("   Ingrese una opcion: ");
-                    int Opcion2 = int.Parse(Console.ReadLine());
-                    switch (Opcion2)
+                    int Opcion;
+                    Aux = int.TryParse(Console.ReadLine(), out Opcion);
+                    if (!Aux)
+                    {
+                        throw new FormatException("   Por favor ingrese un numero.\n");
+                    }
+                    switch (Opcion)
                     {
                         case 1:
                             Console.Write("   Ingrese el titulo que desea listar: ");
@@ -147,25 +160,20 @@ namespace EF6Console
                             break;
                     }
                 }
-                catch (ExceptionFecha Ex)
-                {
-                    Console.Clear();
-                    Console.WriteLine(Ex.Message);
-                }
                 catch (OverflowException)
                 {
                     Console.Clear();
                     Console.WriteLine("   Se han ingresado demasiados datos, error.\n   ");
                 }
-                catch (FormatException)
+                catch (NullReferenceException)
                 {
                     Console.Clear();
-                    Console.WriteLine("   Por favor ingrese un numero.\n   ");
+                    Console.WriteLine("   Ha ocurrido un error inesperado.\n");
                 }
                 catch (Exception Ex)
                 {
                     Console.Clear();
-                    Console.WriteLine("   Ha ocurrido un error inesperado.\n" + Ex.Message);
+                    Console.WriteLine(Ex.Message);
                 }
             }
         }
