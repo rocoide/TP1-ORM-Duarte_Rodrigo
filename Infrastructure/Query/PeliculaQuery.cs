@@ -1,5 +1,6 @@
 ﻿using Application.Interface.Peliculas;
 using Domain.Entity;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Query
@@ -14,10 +15,10 @@ namespace Infrastructure.Query
 
         public List<Pelicula> GetAllPeliculas()
         {
-            List<Pelicula> peliculas = Context.Peliculas
+            List<Pelicula> Peliculas = Context.Peliculas
                                               .Include(f => f.Generos)
                                               .ToList();
-            return peliculas;
+            return Peliculas;
         }
 
         public async Task<Pelicula?> GetPeliculaById(int PeliculaId)

@@ -15,7 +15,7 @@ namespace Application.Validacion
             }
             else
             {
-                if (FechaActual == FechaIngresada) 
+                if (FechaActual == FechaIngresada)
                 {
                     if (HoraActual > Hora)
                     {

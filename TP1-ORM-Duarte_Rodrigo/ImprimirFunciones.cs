@@ -6,21 +6,22 @@ namespace TP1_ORM_Duarte_Rodrigo
     {
         public void Imprimir(List<FuncionResponse> ListaFuncionesResponse)
         {
+            Console.WriteLine("   Funciones:");
             if (ListaFuncionesResponse.Count != 0)
             {
                 foreach (FuncionResponse Fun in ListaFuncionesResponse)
                 {
-                    Console.WriteLine("   Titulo: " + Fun.PeliculaNombre);
-                    Console.WriteLine("   Genero: " + Fun.Genero);
-                    Console.WriteLine("   Sala: " + Fun.SalaNombre);
-                    Console.WriteLine("   Fecha: " + Fun.Fecha.ToString("dddd") + " " + Fun.Fecha.ToString("dd/MM/yyyy") + " " + Fun.Horario.ToString(@"hh\:mm"));
+                    Console.WriteLine("      Titulo: " + Fun.PeliculaNombre);
+                    Console.WriteLine("      Genero: " + Fun.Genero);
+                    Console.WriteLine("      Sala: " + Fun.SalaNombre);
+                    Console.WriteLine("      Fecha: " + Fun.Fecha.ToString("dddd") + " " + Fun.Fecha.ToString("dd/MM/yyyy") + " " + Fun.Horario.ToString(@"hh\:mm"));
                     Console.WriteLine("");
                 }
-                Console.WriteLine("\n\n");
+                Console.WriteLine("");
             }
             else
             {
-                Console.WriteLine("   No se han encontrado funciones para los parametros ingresados\n");
+                Console.WriteLine("      No se han encontrado funciones para los parametros ingresados\n");
             }
         }
     }

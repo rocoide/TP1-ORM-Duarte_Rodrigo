@@ -21,7 +21,7 @@ namespace TP1_ORM_Duarte_Rodrigo
             }
             else
             {
-                Console.WriteLine("   No hay funciones para esa pelicula\n");
+                Console.WriteLine("   No hay peliculas registradas.\n");
             }
         }
     }

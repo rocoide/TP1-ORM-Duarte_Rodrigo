@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure
+namespace Infrastructure.Persistence
 {
     public class CineContext : DbContext
     {
@@ -23,22 +23,22 @@ namespace Infrastructure
             //Relaciones uno a muchos
 
             modelBuilder.Entity<Pelicula>()
-                .HasOne<Genero>(s => s.Generos)
+                .HasOne(s => s.Generos)
                 .WithMany(g => g.Peliculas)
                 .HasForeignKey(s => s.Genero);
 
             modelBuilder.Entity<Funcion>()
-                .HasOne<Pelicula>(s => s.Peliculas)
+                .HasOne(s => s.Peliculas)
                 .WithMany(g => g.Funciones)
                 .HasForeignKey(s => s.PeliculaId);
 
             modelBuilder.Entity<Funcion>()
-                .HasOne<Sala>(s => s.Salas)
+                .HasOne(s => s.Salas)
                 .WithMany(g => g.Funciones)
                 .HasForeignKey(s => s.SalaId);
 
             modelBuilder.Entity<Ticket>()
-                .HasOne<Funcion>(s => s.Funciones)
+                .HasOne(s => s.Funciones)
                 .WithMany(g => g.Tickets)
                 .HasForeignKey(s => s.FuncionId);
 

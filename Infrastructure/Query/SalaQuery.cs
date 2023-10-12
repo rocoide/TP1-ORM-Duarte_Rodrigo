@@ -1,5 +1,6 @@
 ﻿using Application.Interface.Salas;
 using Domain.Entity;
+using Infrastructure.Persistence;
 
 namespace Infrastructure.Query
 {

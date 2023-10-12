@@ -1,5 +1,6 @@
 ﻿using Application.Interface.Function;
 using Domain.Entity;
+using Infrastructure.Persistence;
 
 namespace Infrastructure.Command
 {

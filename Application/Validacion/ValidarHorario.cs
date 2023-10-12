@@ -11,8 +11,7 @@ namespace Application.Validacion
                 throw new FormatException("   Por favor ingrese un horario.\n");
             }
             TimeSpan Horario;
-            bool Resultado = TimeSpan.TryParse(Hora, out Horario);
-            if (!Resultado)
+            if (!TimeSpan.TryParse(Hora, out Horario))
             {
                 throw new ExcepcionHorario("   El horario no se ingreso en un formato valido.\n");
             }

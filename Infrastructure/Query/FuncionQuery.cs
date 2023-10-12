@@ -1,5 +1,6 @@
 ﻿using Application.Interface.Function;
 using Domain.Entity;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Query
@@ -15,35 +16,35 @@ namespace Infrastructure.Query
 
         public async Task<List<Funcion>> ListarTitu(string Titu)
         {
-            List<Funcion> lista = Context.Funciones
+            List<Funcion> Lista = Context.Funciones
                                          .Include(f => f.Peliculas)
                                              .ThenInclude(p => p.Generos)
                                          .Include(f => f.Salas)
                                          .Where(f => f.Peliculas.Titulo.Contains(Titu))
                                          .ToList();
-            return lista;
+            return Lista;
         }
 
         public async Task<List<Funcion>> ListarFecha(DateTime Fecha)
         {
-            List<Funcion> lista = Context.Funciones
+            List<Funcion> Lista = Context.Funciones
                                             .Include(f => f.Peliculas)
                                                 .ThenInclude(p => p.Generos)
                                             .Include(f => f.Salas)
                                             .Where(f => f.Fecha.Day == Fecha.Day && (f.Fecha.Month == Fecha.Month))
                                             .ToList();
-            return lista;
+            return Lista;
         }
 
         public async Task<List<Funcion>> ListarTituFecha(string Titu, DateTime Fecha)
         {
-            List<Funcion> lista = Context.Funciones
+            List<Funcion> Lista = Context.Funciones
                                             .Include(f => f.Peliculas)
                                                 .ThenInclude(p => p.Generos)
                                             .Include(f => f.Salas)
                                             .Where(f => f.Peliculas.Titulo.Contains(Titu) && f.Fecha.Day == Fecha.Day && (f.Fecha.Month == Fecha.Month))
                                             .ToList();
-            return lista;
+            return Lista;
         }
 
     }

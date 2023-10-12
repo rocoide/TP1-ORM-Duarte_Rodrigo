@@ -11,8 +11,7 @@ namespace Application.Validacion
                 throw new ExceptionFecha("   La fecha se debe ingresar con \"-\" no con \"/\".\n");
             }
             DateTime FechaParse;
-            bool Resultado = DateTime.TryParse(Fecha, out FechaParse);
-            if (!Resultado)
+            if (!DateTime.TryParse(Fecha, out FechaParse))
             {
                 throw new ExceptionFecha("   La fecha no se ingreso en un formato valido.\n");
             }
