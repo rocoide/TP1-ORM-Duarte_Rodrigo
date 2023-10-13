@@ -337,7 +337,7 @@ namespace Infrastructure.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-SC0U42I\SQLEXPRESS;Database=CineDuarteDB;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=CineDuarteDB;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
     }
