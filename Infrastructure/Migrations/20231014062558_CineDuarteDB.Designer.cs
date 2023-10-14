@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(CineContext))]
-    [Migration("20231012062815_CinemaDuarteDB")]
-    partial class CinemaDuarteDB
+    [Migration("20231014062558_CineDuarteDB")]
+    partial class CineDuarteDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
